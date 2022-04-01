@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}>
+    <style>
+
+    </style>
+</head>
+
+
+{% block javascript %}
+    <script src="{{ url_for('static',filename='copy_text.js')}}"></script>
+{% endblock %}
+
+
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+<footer>
+    <p>Credits to <a href="https://cinemagoer.github.io/" target="_blank">Cinemagoer for the IMDB API</a></p>
+    <p>This web application is released under GPL v2 or later</p>
+</footer>
+
+</html>

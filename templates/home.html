@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1><a href="/reset">{{title}}</h1></a>
+    </div>
+<div class="app">
+    <h2>Step 1: IMDB Search </h2>
+    <p><i>Click on the IMDB ID to view its IMDB page</i></p>
+    <form action="" method="get">
+        <input type="text" name="keywords">
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    <table class="results">
+        <tr>
+            <th>IMDB ID</th>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+        {% for each in search_results%}
+        <tr>
+            <td><a href="https://www.imdb.com/title/tt{{each['imdb_id']}}" target="_blank">{{each['imdb_id']}}</td></a>
+            <td><a href="/?ID={{each['imdb_id']}}">{{each['title']}}</td></a>
+            <td>{{each['year']}}</td>
+        </tr>
+            {% endfor %}
+
+    </table>
+    <h2>Step 2: Enter IMDB ID to Generate Patient Table</h2>
+    <p><i>Or click on the Title link above to select it</i></p>
+    <form action="" method="get">
+        <input type="text" name="ID">
+        <input type="submit" value="Generate">
+    </form>
+    <br>
+    {{pt_table|safe}}
+    {% for char in pt_list%}
+    <div id="{{char[0]}}.1">
+        <hr>
+        <b>Patient ID: {{char[0]}}  </b>
+        <button onclick="copyTextFromElement('{{char[0]}}')">Copy Patient Demographics</button><br>
+        <div id="{{char[0]}}">
+        Name: {{char[1]}}<br>
+        Date of Birth: {{char[2]}}<br>
+        Gender: {{char[3]}}<br>
+        HCN: {{char[4]}}<br>
+        Phone: {{char[5]}}<br>
+        Address: {{char[6]}}<br>
+        Allergies: {{char[7]}}<br>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
