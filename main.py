@@ -21,7 +21,7 @@ def reset():
     return redirect("/")
 @app.route("/license")
 def license():
-    return render_template('license.html')
+    return render_template('license.html', title='Patient Table Generator')
 
 @app.route("/")
 def index():
