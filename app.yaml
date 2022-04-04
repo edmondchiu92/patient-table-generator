@@ -7,4 +7,4 @@ handlers:
     static_dir: static/
     expiration: '10s'
 
-default_expiration: '5s'
+default_expiration: '8h'
