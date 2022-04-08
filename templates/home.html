@@ -18,7 +18,7 @@
             <th>Year</th>
         </tr>
         {% for each in search_results %}
-        {% cache 600, 'search-results', each['imdb_id'] %}
+        {% cache None, 'search-results', each['imdb_id'] %}
         <tr>
             <td><a href="https://www.imdb.com/title/tt{{each['imdb_id']}}" target="_blank">{{each['imdb_id']}}</td></a>
             <td><a href="/?ID={{each['imdb_id']}}">{{each['title']}}</td></a>
@@ -35,11 +35,11 @@
         <input type="submit" value="Generate">
     </form>
     <br>
-    {% cache 600, "data", pt_table %}
+    {% cache None, "data", pt_table %}
     {{pt_table|safe}}
     {% endcache %}
     {% for char in pt_list%}
-        {% cache 600, "data", char[1] %}
+        {% cache None, "data", char[1] %}
     <div id="{{char[0]}}.1">
         <hr>
         <b>Patient ID: {{char[0]}}  </b>
