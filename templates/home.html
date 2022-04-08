@@ -35,10 +35,11 @@
         <input type="submit" value="Generate">
     </form>
     <br>
-
+    {% cache 600, "data", pt_table %}
     {{pt_table|safe}}
+    {% endcache %}
     {% for char in pt_list%}
-        {% cache 600, "data", char[0] %}
+        {% cache 600, "data", char[1] %}
     <div id="{{char[0]}}.1">
         <hr>
         <b>Patient ID: {{char[0]}}  </b>
