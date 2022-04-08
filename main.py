@@ -1,16 +1,20 @@
 from flask import Flask
 from flask import render_template
 from flask import request, escape, redirect
+from flask_caching import Cache
 import pandas as pd
 import numpy as np
 import imdb
 
+cache = Cache(config={'CACHE_TYPE': 'simple'})
 app = Flask(__name__)
-
+cache.init_app(app)
 page_data = {}
 page_data['search_results'] = ""
 page_data['pt_table'] = ""
 page_data['pt_list'] = ""
+
+
 
 @app.route("/reset")
 def reset():
@@ -22,6 +26,7 @@ def reset():
 @app.route("/license")
 def license():
     return render_template('license.html', title='Patient Table Generator')
+
 
 @app.route("/")
 def index():
